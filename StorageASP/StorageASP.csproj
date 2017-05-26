@@ -225,6 +225,7 @@
     <Content Include="Views\Tables\AddEntity.cshtml" />
     <Content Include="Views\Tables\AddEntities.cshtml" />
     <Content Include="Views\Tables\GetSingle.cshtml" />
+    <Content Include="Views\Tables\GetPartition.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

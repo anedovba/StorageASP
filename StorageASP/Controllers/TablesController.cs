@@ -73,5 +73,29 @@ namespace StorageASP.Controllers
             return View(result);
             
         }
+        public ActionResult GetPartition()
+        {
+            CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
+   CloudConfigurationManager.GetSetting("storage"));
+            CloudTableClient tableClient = storageAccount.CreateCloudTableClient();
+            CloudTable table = tableClient.GetTableReference("TestTable");
+            TableQuery<CustomerEntity> query =
+    new TableQuery<CustomerEntity>()
+    .Where(TableQuery.GenerateFilterCondition("PartitionKey", QueryComparisons.Equal, "Smith"));
+            List<CustomerEntity> customers = new List<CustomerEntity>();
+            TableContinuationToken token = null;
+            do
+            {
+                TableQuerySegment<CustomerEntity> resultSegment = table.ExecuteQuerySegmented(query, token);
+                token = resultSegment.ContinuationToken;
+
+                foreach (CustomerEntity customer in resultSegment.Results)
+                {
+                    customers.Add(customer);
+                }
+            } while (token != null);
+
+            return View(customers);
+        }
     }
 }
