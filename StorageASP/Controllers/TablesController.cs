@@ -62,5 +62,16 @@ namespace StorageASP.Controllers
             return View(results);
            
         }
+        public ActionResult GetSingle()
+        {
+            CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
+    CloudConfigurationManager.GetSetting("storage"));
+            CloudTableClient tableClient = storageAccount.CreateCloudTableClient();
+            CloudTable table = tableClient.GetTableReference("TestTable");
+            TableOperation retrieveOperation = TableOperation.Retrieve<CustomerEntity>("Anna", "Nedovba");
+            TableResult result = table.Execute(retrieveOperation);
+            return View(result);
+            
+        }
     }
 }
