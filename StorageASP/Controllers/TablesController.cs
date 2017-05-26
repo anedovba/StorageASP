@@ -44,5 +44,23 @@ namespace StorageASP.Controllers
 
             return View();
         }
+        public ActionResult AddEntities()
+        {
+            CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
+   CloudConfigurationManager.GetSetting("storage"));
+            CloudTableClient tableClient = storageAccount.CreateCloudTableClient();
+            CloudTable table = tableClient.GetTableReference("TestTable");
+            CustomerEntity customer1 = new CustomerEntity("Smith", "Jeff");
+            customer1.Email = "Jeff@contoso.com";
+
+            CustomerEntity customer2 = new CustomerEntity("Smith", "Ben");
+            customer2.Email = "Ben@contoso.com";
+            TableBatchOperation batchOperation = new TableBatchOperation();
+            batchOperation.Insert(customer1);
+            batchOperation.Insert(customer2);
+            IList<TableResult> results = table.ExecuteBatch(batchOperation);
+            return View(results);
+           
+        }
     }
 }
