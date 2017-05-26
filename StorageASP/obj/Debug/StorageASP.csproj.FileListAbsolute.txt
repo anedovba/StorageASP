@@ -201,6 +201,5 @@ D:\ШАГ\Project\azure\Storage\StorageASP\bin\ko\System.Spatial.resources.dll
 D:\ШАГ\Project\azure\Storage\StorageASP\bin\ru\System.Spatial.resources.dll
 D:\ШАГ\Project\azure\Storage\StorageASP\bin\zh-Hans\System.Spatial.resources.dll
 D:\ШАГ\Project\azure\Storage\StorageASP\bin\zh-Hant\System.Spatial.resources.dll
-D:\ШАГ\Project\azure\Storage\StorageASP\obj\Debug\StorageASP.csprojResolveAssemblyReference.cache
 D:\ШАГ\Project\azure\Storage\StorageASP\obj\Debug\StorageASP.dll
 D:\ШАГ\Project\azure\Storage\StorageASP\obj\Debug\StorageASP.pdb
