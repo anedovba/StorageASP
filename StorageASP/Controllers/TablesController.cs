@@ -35,8 +35,8 @@ namespace StorageASP.Controllers
    CloudConfigurationManager.GetSetting("storage"));
             CloudTableClient tableClient = storageAccount.CreateCloudTableClient();
             CloudTable table = tableClient.GetTableReference("TestTable");
-            CustomerEntity customer1 = new CustomerEntity("Test", "Test");
-            customer1.Email = "Nedovba@test.com";
+            CustomerEntity customer1 = new CustomerEntity("Test2", "Test2");
+            customer1.Email = "test@test.com";
             TableOperation insertOperation = TableOperation.Insert(customer1);
             TableResult result = table.Execute(insertOperation);
             ViewBag.TableName = table.Name;
