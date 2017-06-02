@@ -35,7 +35,7 @@ namespace StorageASP.Controllers
    CloudConfigurationManager.GetSetting("storage"));
             CloudTableClient tableClient = storageAccount.CreateCloudTableClient();
             CloudTable table = tableClient.GetTableReference("TestTable");
-            CustomerEntity customer1 = new CustomerEntity("Test2", "Test2");
+            CustomerEntity customer1 = new CustomerEntity("Anna", "Anna");
             customer1.Email = "test@test.com";
             TableOperation insertOperation = TableOperation.Insert(customer1);
             TableResult result = table.Execute(insertOperation);
@@ -97,5 +97,17 @@ namespace StorageASP.Controllers
 
             return View(customers);
         }
+
+        public ActionResult DeleteEntity()
+        {
+            CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
+               CloudConfigurationManager.GetSetting("storage"));
+            CloudTableClient tableClient = storageAccount.CreateCloudTableClient();
+            CloudTable table = tableClient.GetTableReference("TestTable");
+            TableOperation deleteOperation =
+    TableOperation.Delete(new CustomerEntity("Anna", "Anna") { ETag = "*" });
+            TableResult result = table.Execute(deleteOperation);
+            return View(result);
+        } 
     }
 }
